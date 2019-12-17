@@ -1,6 +1,27 @@
 package go_advent_of_code_2019
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+func LoadProgram(filename string) []int {
+	program := readFile(filename)
+	rawMemory := strings.Split(program, ",")
+
+	var memory []int
+
+	for i := range rawMemory {
+		num, err := strconv.Atoi(rawMemory[i])
+		if err != nil {
+			panic(err)
+		}
+		memory = append(memory, num)
+	}
+
+	return memory
+}
 
 type Machine struct {
 	Memory []int
